@@ -14,7 +14,7 @@ class Menu extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  color: const Color.fromARGB(228, 7, 7, 0),
+                  color:  Color.fromARGB(228, 7, 7, 0),
                 ),
               ),
               Expanded(
@@ -46,7 +46,7 @@ class Menu extends StatelessWidget {
                     ),
                     Icon(
                       Icons.photo,
-                      color: const Color.fromARGB(255, 255, 255, 255),
+                      color:  Color.fromARGB(255, 255, 255, 255),
                       size: 28,
                     ),
                   ],
@@ -64,10 +64,10 @@ class Menu extends StatelessWidget {
                           hintText: 'Search coffee',
                           hintStyle: TextStyle(
                             fontSize: 14,
-                            color: const Color.fromARGB(211, 153, 153, 142),
+                            color:  Color.fromARGB(211, 153, 153, 142),
                           ),
                           filled: true,
-                          fillColor: const Color.fromARGB(255, 90, 90, 78),
+                          fillColor:  Color.fromARGB(255, 90, 90, 78),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                             borderSide: BorderSide.none,
@@ -144,7 +144,7 @@ class Menu extends StatelessWidget {
                           'Machiato',
                           style: TextStyle(
                             fontSize: 14,
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color:  Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                       ),
@@ -166,7 +166,7 @@ class Menu extends StatelessWidget {
                           'Latte',
                           style: TextStyle(
                             fontSize: 14,
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color:  Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                       ),
@@ -187,7 +187,7 @@ class Menu extends StatelessWidget {
                           'Americano',
                           style: TextStyle(
                             fontSize: 14,
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color:  Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                       ),
