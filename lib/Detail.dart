@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Detail extends StatelessWidget {
+class Detail extends StatefulWidget {
   const Detail({super.key});
+
+  @override
+  State<Detail> createState() => _DetailState();
+}
+
+class _DetailState extends State<Detail> {
+  String selectedSize = '';
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class Detail extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.arrow_back, size: 28),
+                  Icon(Icons.arrow_back_ios, size: 28),
                   Text(
                     'Detail',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -77,12 +84,20 @@ class Detail extends StatelessWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.all(8),
-                        child: Icon(Icons.coffee),
+                        child: Image.asset(
+                          'assets/images/bean.png',
+                          width: 35,
+                          height: 35,
+                        ),
                       ),
                       SizedBox(width: 8),
                       Container(
                         padding: EdgeInsets.all(8),
-                        child: Icon(Icons.coffee_maker),
+                        child: Image.asset(
+                          'assets/images/milk.png',
+                          width: 35,
+                          height: 35,
+                        ),
                       ),
                     ],
                   ),
@@ -111,35 +126,32 @@ class Detail extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    width: 100,
-                    height: 50,
-                    child: Text('S', style: TextStyle(fontSize: 18)),
+                  SizeComponenet(
+                    size: 'S',
+                    isSelected: selectedSize == 'S',
+                    select: () {
+                      setState(() {
+                        selectedSize = "S";
+                      });
+                    },
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    width: 100,
-                    height: 50,
-                    child: Text('M', style: TextStyle(fontSize: 18)),
+                  SizeComponenet(
+                    size: 'M',
+                    isSelected: selectedSize == 'M',
+                    select: () {
+                      setState(() {
+                        selectedSize = "M";
+                      });
+                    },
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    width: 100,
-                    height: 50,
-                    child: Text('L', style: TextStyle(fontSize: 18)),
+                  SizeComponenet(
+                    size: 'L',
+                    isSelected: selectedSize == 'L',
+                    select: () {
+                      setState(() {
+                        selectedSize = "L";
+                      });
+                    },
                   ),
                 ],
               ),
@@ -187,6 +199,49 @@ class Detail extends StatelessWidget {
                 ],
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SizeComponenet extends StatelessWidget {
+  final String size;
+  final bool isSelected;
+  final void Function() select;
+  const SizeComponenet({
+    super.key,
+    required this.size,
+    required this.isSelected,
+    required this.select,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: select,
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: isSelected ? Color.fromRGBO(255, 245, 238, 1) : Colors.white,
+          border: Border.all(
+            color: isSelected
+                ? Color.fromRGBO(198, 124, 78, 1)
+                : Color.fromRGBO(222, 222, 222, 1),
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        width: 100,
+        height: 45,
+        child: Text(
+          size,
+          style: TextStyle(
+            fontSize: 18,
+            color: isSelected
+                ? Color.fromRGBO(198, 124, 78, 1)
+                : Color.fromRGBO(34, 34, 34, 1),
           ),
         ),
       ),

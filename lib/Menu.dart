@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:project_one/Detail.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
   const Menu({super.key});
+
+  @override
+  State<Menu> createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  List categories = ['Cappuccino', 'Machiato', 'Latte', 'Americano'];
+  String selectedCat = '';
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,7 @@ class Menu extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  color:  Color.fromARGB(228, 7, 7, 0),
+                  color: Color.fromRGBO(43, 43, 43, 1),
                 ),
               ),
               Expanded(
@@ -44,10 +51,10 @@ class Menu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Icon(
-                      Icons.photo,
-                      color:  Color.fromARGB(255, 255, 255, 255),
-                      size: 28,
+                    Image.asset(
+                      'assets/images/Image 1.png',
+                      width: 50,
+                      height: 50,
                     ),
                   ],
                 ),
@@ -64,16 +71,31 @@ class Menu extends StatelessWidget {
                           hintText: 'Search coffee',
                           hintStyle: TextStyle(
                             fontSize: 14,
-                            color:  Color.fromARGB(211, 153, 153, 142),
+                            color: Color.fromARGB(211, 153, 153, 142),
                           ),
                           filled: true,
-                          fillColor:  Color.fromARGB(255, 90, 90, 78),
+                          fillColor: Color.fromRGBO(66, 66, 66, 1),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                             borderSide: BorderSide.none,
                           ),
-                          prefixIcon: Icon(Icons.search, color: Colors.white),
-                          suffixIcon: Icon(Icons.tune, color: Colors.white),
+                          prefixIcon: Image.asset(
+                            'assets/images/search.png',
+                            width: 18,
+                            height: 18,
+                          ),
+                          suffixIcon: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(198, 124, 78, 1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Image.asset(
+                              'assets/images/setting.png',
+                              width: 18,
+                              height: 18,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -99,105 +121,68 @@ class Menu extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
 
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Detail()),
-                          );
+                    children: categories.map((e) {
+                      return CategoryComponenet(
+                        category: e,
+                        isSelected: selectedCat == e,
+                        select: () {
+                          setState(() {
+                            selectedCat = e;
+                          });
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(198, 142, 78, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 20,
-                          ),
-                        ),
-                        child: Text(
-                          'Cappuccino',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 253, 253, 253),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 20,
-                          ),
-                        ),
-                        child: Text(
-                          'Machiato',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color:  Color.fromARGB(255, 0, 0, 0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 253, 253, 253),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 20,
-                          ),
-                        ),
-                        child: Text(
-                          'Latte',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color:  Color.fromARGB(255, 0, 0, 0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 253, 253, 253),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30,
-                            vertical: 20,
-                          ),
-                        ),
-                        child: Text(
-                          'Americano',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color:  Color.fromARGB(255, 0, 0, 0),
-                          ),
-                        ),
-                      ),
-                    ],
+                      );
+                    }).toList(),
                   ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CategoryComponenet extends StatelessWidget {
+  final String category;
+  final bool isSelected;
+  final void Function() select;
+  const CategoryComponenet({
+    super.key,
+    required this.category,
+    required this.isSelected,
+    required this.select,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: select,
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: isSelected
+              ? Color.fromRGBO(198, 124, 78, 1)
+              : Color.fromRGBO(243, 243, 243, 1),
+          border: Border.all(
+            color: isSelected
+                ? Color.fromRGBO(198, 124, 78, 1)
+                : Color.fromRGBO(243, 243, 243, 1),
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        width: 150,
+        height: 40,
+        child: Text(
+          category,
+          style: TextStyle(
+            fontSize: 15,
+            color: isSelected
+                ? Color.fromRGBO(255, 255, 255, 1)
+                : Color.fromRGBO(34, 34, 34, 1),
+          ),
+        ),
       ),
     );
   }
