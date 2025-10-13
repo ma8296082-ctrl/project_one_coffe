@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_one/Order.dart';
 
 class Detail extends StatefulWidget {
   const Detail({super.key});
@@ -176,7 +177,12 @@ class _DetailState extends State<Detail> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Order()),
+                        );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 253, 125, 79),
                       shape: RoundedRectangleBorder(

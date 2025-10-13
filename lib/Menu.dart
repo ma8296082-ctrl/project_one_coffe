@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_one/Detail.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -103,14 +104,22 @@ class _MenuState extends State<Menu> {
                 ),
                 SizedBox(height: 50),
 
-                Container(
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/Frame 8.png'),
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Detail()),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/Frame 8.png'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
