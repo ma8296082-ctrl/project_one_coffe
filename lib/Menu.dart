@@ -14,6 +14,37 @@ class _MenuState extends State<Menu> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> coffees = [
+      {
+        'image': 'assets/images/coffe.png',
+        'name': 'Cappuccino',
+        'desc': 'With Chocolate',
+        'price': '\$4.53',
+        'rating': '4.8',
+      },
+      {
+        'image': 'assets/images/1.png',
+        'name': 'Latte',
+        'desc': 'With Chocolate',
+        'price': '\$4.53',
+        'rating': '4.8',
+      },
+      {
+        'image': 'assets/images/2.png',
+        'name': 'Americano',
+        'desc': 'With Chocolate',
+        'price': '\$4.53',
+        'rating': '4.8',
+      },
+      {
+        'image': 'assets/images/3.png',
+        'name': 'Macchiato',
+        'desc': 'With Chocolate',
+        'price': '\$4.53',
+        'rating': '4.8',
+      },
+    ];
+
     return Scaffold(
       body: Stack(
         children: [
@@ -149,6 +180,128 @@ class _MenuState extends State<Menu> {
                           );
                         }).toList(),
                       ),
+                    ),
+                    SizedBox(height: 30),
+
+                    GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: coffees.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) {
+                        final coffee = coffees[index];
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(187, 243, 243, 243),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(6),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: AssetImage(coffee['image']),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.yellow,
+                                          ),
+                                          SizedBox(width: 4),
+                                          Text(
+                                            coffee['rating'],
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                const SizedBox(height: 6),
+
+                                Expanded(
+                                  flex: 1,
+
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        coffee['name'],
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        coffee['desc'],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            coffee['price'],
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: Color.fromRGBO(
+                                                198,
+                                                124,
+                                                78,
+                                                1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            child: Icon(
+                                              Icons.add,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
