@@ -213,7 +213,8 @@ class _DetailState extends State<Detail> {
                               borderRadius: BorderRadius.circular(25),
                             ),
                             padding: EdgeInsets.symmetric(
-                              horizontal: 100,
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.15,
                               vertical: 30,
                             ),
                           ),

@@ -531,7 +531,7 @@ class CategoryComponenet extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(15),
         ),
-        width: 220,
+        width: MediaQuery.of(context).size.width * 0.40,
         height: 50,
         child: Text(
           category,

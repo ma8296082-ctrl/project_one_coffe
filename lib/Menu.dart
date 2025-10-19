@@ -9,6 +9,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  int selectedTap = 0;
   List categories = ['Cappuccino', 'Machiato', 'Latte', 'Americano'];
   String selectedCat = '';
 
@@ -66,7 +67,7 @@ class _MenuState extends State<Menu> {
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 40, bottom: 40),
 
                 child: Column(
                   children: [
@@ -156,7 +157,7 @@ class _MenuState extends State<Menu> {
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
                             image: AssetImage('assets/images/Frame 8.png'),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
@@ -190,8 +191,8 @@ class _MenuState extends State<Menu> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        childAspectRatio: 0.75,
+                        mainAxisSpacing: 30,
+                        childAspectRatio: 0.5,
                       ),
                       itemBuilder: (context, index) {
                         final coffee = coffees[index];
@@ -307,6 +308,53 @@ class _MenuState extends State<Menu> {
                 ),
               ),
             ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        currentIndex: selectedTap,
+        onTap: (value) {
+          setState(() {
+            selectedTap = value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/images/Home.png',
+              color: selectedTap == 0
+                  ? Color.fromRGBO(198, 124, 78, 1)
+                  : Colors.grey,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/images/Heart.png',
+              color: selectedTap == 1
+                  ? Color.fromRGBO(198, 124, 78, 1)
+                  : Colors.grey,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/images/Bag.png',
+              color: selectedTap == 2
+                  ? Color.fromRGBO(198, 124, 78, 1)
+                  : Colors.grey,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/images/Notification.png',
+              color: selectedTap == 3
+                  ? Color.fromRGBO(198, 124, 78, 1)
+                  : Colors.grey,
+            ),
+            label: '',
           ),
         ],
       ),
